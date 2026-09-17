@@ -1,0 +1,26 @@
+@startuml
+actor User
+participant CLI as "CliApplication"
+participant Service as "CompressionService"
+participant Reader as "ImageReader"
+participant Matrix as "PixelMatrixConverter"
+participant SVD as "SvdCompressor"
+participant Metrics as "QualityMetrics"
+participant Writer as "ImageWriter"
+User -> CLI : command / interactive answers
+CLI -> Service : compress(config)
+Service -> Reader : read(input)
+Reader --> Service : ImageData
+Service -> Matrix : toMatrices(image)
+Matrix --> Service : channel matrices
+loop one channel or RGB channels
+ Service -> SVD : compress(matrix, rank)
+ SVD --> Service : reconstructed matrix
+end
+Service -> Matrix : toImage(matrices)
+Service -> Metrics : mse(), psnr()
+Service -> Writer : write(output)
+Writer --> Service : output saved
+Service --> CLI : CompressionResult
+CLI --> User : measured summary
+@enduml

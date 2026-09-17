@@ -1,0 +1,3 @@
+package space.bl1nd.svdcompression;
+import space.bl1nd.svdcompression.cli.CliParser; import space.bl1nd.svdcompression.exception.UserInputException; import org.junit.jupiter.api.Test; import static org.junit.jupiter.api.Assertions.*;
+class CliParserTest { @Test void parsesValidConfiguration(){var c=new CliParser().parse(new String[]{"--input","a.png","--rank","2","--mode","rgb"});assertEquals(2,c.rank());assertEquals("png",c.format());} @Test void rejectsConflictingSelection(){assertThrows(UserInputException.class,()->new CliParser().parse(new String[]{"--input","a.png","--rank","2","--compression","30"}));} @Test void rejectsBadPercentage(){assertThrows(UserInputException.class,()->new CliParser().parse(new String[]{"--input","a.png","--compression","0"}));} }

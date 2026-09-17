@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+
+actor User
+
+rectangle "SVD Image Compressor" {
+    usecase "Load and validate image" as L
+    usecase "Choose rank / quality / percentage" as C
+    usecase "Choose color mode" as M
+    usecase "Compress with truncated SVD" as S
+    usecase "Save local output" as O
+    usecase "View help" as H
+    usecase "View statistics and quality metrics" as Q
+}
+
+User --> L
+User --> C
+User --> M
+User --> S
+User --> O
+User --> H
+
+S --> Q
+
+@enduml

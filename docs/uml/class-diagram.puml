@@ -1,0 +1,25 @@
+@startuml
+class Main
+class CliApplication
+class CliParser
+class InteractiveCli
+class CompressionConfig
+class CompressionService
+class ImageReader
+class ImageWriter
+class PixelMatrixConverter
+class SvdCompressor
+class QualityMetrics
+class CompressionStatistics
+Main --> CliApplication
+CliApplication --> CliParser
+CliApplication --> InteractiveCli
+CliApplication --> CompressionService
+CliParser --> CompressionConfig
+CompressionService --> ImageReader
+CompressionService --> ImageWriter
+CompressionService --> PixelMatrixConverter
+CompressionService --> SvdCompressor
+CompressionService --> QualityMetrics
+CompressionService --> CompressionStatistics
+@enduml

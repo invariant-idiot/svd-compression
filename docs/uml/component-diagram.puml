@@ -1,0 +1,9 @@
+@startuml
+[CLI] --> [Compression Service]
+[Compression Service] --> [Validation]
+[Compression Service] --> [Image Processing]
+[Image Processing] --> [Java ImageIO]
+[Compression Service] --> [SVD Engine]
+[SVD Engine] --> [Apache Commons Math]
+[Compression Service] --> [Metrics and Output]
+@enduml
